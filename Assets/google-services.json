@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "151129357397",
+    "firebase_url": "https://iot-pastillero-default-rtdb.firebaseio.com",
+    "project_id": "iot-pastillero",
+    "storage_bucket": "iot-pastillero.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151129357397:android:a5059bf64bc92ee91b68dc",
+        "android_client_info": {
+          "package_name": "com.codegroup.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151129357397-d6mnl76n2ftar2injct2d9sdncb31hg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGy4jFbbK2G4ETvVrOQaUNYsApy593WYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151129357397-d6mnl76n2ftar2injct2d9sdncb31hg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151129357397:android:da2e6a8c2856a3a51b68dc",
+        "android_client_info": {
+          "package_name": "com.codegroup.pastillerito"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151129357397-d6mnl76n2ftar2injct2d9sdncb31hg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGy4jFbbK2G4ETvVrOQaUNYsApy593WYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151129357397-d6mnl76n2ftar2injct2d9sdncb31hg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
