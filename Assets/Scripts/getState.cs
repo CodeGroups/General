@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class getState : MonoBehaviour
 {
+    public int i=0;
     public class Firebasedata
     {
-        public bool status;
-        public string  time;
+        public bool[] estado = new bool[9];
+        public string[]  hora = new string[9];
         
         
     }
@@ -21,36 +22,54 @@ public class getState : MonoBehaviour
     {
         foreach(GameObject light in lights)
         {
-            light.SetActive(myData.status);
+            light.SetActive(false);
 
         }
 
+        // FirebaseDatabase.DefaultInstance
+        //     .GetReference("dispositivo")
+        //     .Child("casilla-001")
+        //     .Child("historial")
+        //     .ValueChanged += HandleValueChanged;
+        
         FirebaseDatabase.DefaultInstance
-            .GetReference("historial")
-            .Child("med-001")
+            .GetReference("dispositivo")
             .ValueChanged += HandleValueChanged;
-        // 
 
     }
 
     void HandleValueChanged(object sender, ValueChangedEventArgs args)
     {
         DataSnapshot dataSnapshot = args.Snapshot;
+        DataSnapshot dataSnapshot2 = args.Snapshot;
         Debug.Log(dataSnapshot.GetRawJsonValue());
         //Toma los datos de Json
         myData = JsonUtility.FromJson<Firebasedata>(dataSnapshot.GetRawJsonValue());
-        Debug.Log(myData.status);
+        Debug.Log(myData.estado);
+
+        for (int i = 0; i <= 3; i++)
+        {
+            Debug.Log("antes");
+            myData.estado[i] = bool.Parse(args.Snapshot.Child($"casilla-00{i+1}").Child("historial").Child("estado").Value.ToString());
+            Debug.Log(myData.estado[i]);
+        }
+        
     }
     
 
     // Update is called once per frame
     void Update()
     {
-        lights[0].SetActive(myData.status);
-        // foreach(GameObject light in lights)
-        // {
-        //     light.SetActive(myData.status);
-            
-        // }
+        Debug.Log("A ver que sale "+myData.estado[i]);
+        // lights[0].SetActive(myData.estado[0]);
+        foreach(GameObject light in lights)
+        {
+            Debug.Log("ya funciona "+i);
+            light.SetActive(myData.estado[i]);
+            if (i< 3)
+            {
+               i++; 
+            }
+        }
     }
 }
