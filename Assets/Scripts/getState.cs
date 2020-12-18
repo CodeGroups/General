@@ -45,14 +45,21 @@ public class getState : MonoBehaviour
         Debug.Log(dataSnapshot.GetRawJsonValue());
         //Toma los datos de Json
         myData = JsonUtility.FromJson<Firebasedata>(dataSnapshot.GetRawJsonValue());
-        Debug.Log(myData.estado);
+        //Debug.Log(myData.estado);
 
-        for (int i = 0; i <= 3; i++)
+        for (int i = 0; i < 9; i++)
         {
-            Debug.Log("antes");
+            //Debug.Log($"CASILLA-00{i+1} ");
             myData.estado[i] = bool.Parse(args.Snapshot.Child($"casilla-00{i+1}").Child("historial").Child("estado").Value.ToString());
             Debug.Log(myData.estado[i]);
         }
+        foreach(GameObject light in lights)
+        {
+            Debug.Log("ya funciona "+i);
+            light.SetActive(myData.estado[i]);
+            i++; 
+        }
+        //light.SetActive(myData.estado[i]);
         
     }
     
@@ -60,16 +67,13 @@ public class getState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("A ver que sale "+myData.estado[i]);
-        // lights[0].SetActive(myData.estado[0]);
-        foreach(GameObject light in lights)
-        {
-            Debug.Log("ya funciona "+i);
-            light.SetActive(myData.estado[i]);
-            if (i< 3)
-            {
-               i++; 
-            }
-        }
+        // Debug.Log("A ver que sale "+myData.estado[9]);
+        // // lights[0].SetActive(myData.estado[0]);
+        // foreach(GameObject light in lights)
+        // {
+        //     Debug.Log("ya funciona "+i);
+        //     light.SetActive(myData.estado[i]);
+        //     i++; 
+        // }
     }
 }

@@ -36,13 +36,13 @@ public class MyScript : MonoBehaviour {
     {
         for (int i = 0; i <= 3; i++)
         {
-            Debug.Log("antes");
+            //Debug.Log("antes");
             myData.estado[i] = bool.Parse(args.Snapshot.Child($"casilla-00{i+1}").Child("historial").Child("estado").Value.ToString());
             Debug.Log(myData.estado[i]);
         }
 		if (Array.Exists(myData.estado, element => element == true))
 		{
-			Debug.Log("pues entro al array");
+			//Debug.Log("pues entro al array");
 			audio.PlayOneShot(sonido, 1);
 		}
         
