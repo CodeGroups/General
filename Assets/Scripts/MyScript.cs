@@ -6,19 +6,13 @@ using UnityEngine.UI;
 using System;
 public class MyScript : MonoBehaviour {
 
-	//public AudioSource source { get { return GetComponent<AudioSource> (); }}
-	//public Button btn { get { return GetComponent<Button> (); } }
 	public AudioClip sonido;
 	AudioSource audio;
 	public bool alreadyplayed = false;
-	//float timeRemaining = 5;
 
 	public class Firebasedata
     {
         public bool[] estado = new bool[9];
-        public string[]  hora = new string[9];
-        
-        
     }
     public Firebasedata myData = new Firebasedata();
 
@@ -30,29 +24,26 @@ public class MyScript : MonoBehaviour {
             .GetReference("dispositivo")
             .ValueChanged += HandleValueChanged;
 		audio = GetComponent<AudioSource>();
-		//btn.onClick.AddListener (PlaySound);
 	}
 	void HandleValueChanged(object sender, ValueChangedEventArgs args)
     {
-        for (int i = 0; i <= 3; i++)
+        for (int i = 0; i < 9; i++)
         {
-            //Debug.Log("antes");
-            myData.estado[i] = bool.Parse(args.Snapshot.Child($"casilla-00{i+1}").Child("historial").Child("estado").Value.ToString());
-            Debug.Log(myData.estado[i]);
+            myData.estado[i] = bool.Parse(args.Snapshot.Child($"casilla-00{i+1}").Child("estado").Value.ToString());
         }
 		if (Array.Exists(myData.estado, element => element == true))
 		{
-			//Debug.Log("pues entro al array");
-			audio.PlayOneShot(sonido, 1);
+			StartCoroutine(playaudio());
 		}
         
     }
-
-	void Update()
-    {
-		
-		
-				
-	}
-	
+	IEnumerator playaudio() {
+      
+      	WaitForSeconds wait = new WaitForSeconds(10);
+      	for(int i = 0; i < 6; i++) {
+			
+			audio.PlayOneShot(sonido, 1);
+        	yield return wait; //Pausa el loop durante 3 seg
+      	}
+   }
 }
